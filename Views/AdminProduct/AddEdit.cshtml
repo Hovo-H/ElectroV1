@@ -1,0 +1,135 @@
+﻿@using WebApplication1.ViewModels.Products
+@using WebApplication1.ViewModels.Categories
+@using WebApplication1.ViewModels.Vendors
+@model ProductAddEditViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+    <!-- Main CSS-->
+
+    <link href="/css/ma1n.css" rel="stylesheet" media="all">
+    <title>Product</title>
+</head>
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="post">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Name</label>
+                                    <input class="input--style-4" asp-for="Name">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Price</label>
+                                    <input asp-for="Price"  class="input--style-4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Description</label>
+                                    <div class="input-group-icon">
+                                        <textarea asp-for="Description" class="input--style-4 js-datepicker"></textarea>
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Color</label>
+                                            <input class="input--style-4" asp-for="Color">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gb Size</label>
+                                    <div class="input-group-icon">
+                                        <input asp-for="GbSize" class="input--style-4 js-datepicker">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Ram</label>
+                                            <input class="input--style-4" asp-for="Ram">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="col-2">
+                                        <div class="input-group">
+                                            <label class="label">Image Url</label>
+                                            <input class="input--style-4" asp-for="ImageUrl">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Category</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select asp-for="CategoryId">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    @foreach (var item in ViewBag.Categories)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                            <label class="label">Vendor</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select asp-for="VendorId">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    @foreach (var item in ViewBag.Vendors)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

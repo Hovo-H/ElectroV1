@@ -1,0 +1,102 @@
+﻿@using WebApplication1.ViewModels.Products;
+@model ProductFilterListViewModel
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CodePen - Popular Products Section Using HTML , CSS , Bootstrap</title>
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+	<link rel="stylesheet" href="/css/product.css">
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" asp-action="UserList" asp-controller="AdminUser">Users</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-action="CategoryList" asp-controller="AdminCategory">Categories</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-action="VendorList" asp-controller="AdminVendor">Vendors</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0" method="post">
+				<input asp-for="Name" class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search">
+				<input asp-for="FromPrice" type="number" class="form-control mr-sm-2" type="search" placeholder="FromPrice" aria-label="Search">
+				<input asp-for="ToPrice" type="number" class="form-control mr-sm-2" type="search" placeholder="ToPrice" aria-label="Search">
+				<input asp-for="Color" class="form-control mr-sm-2" type="search" placeholder="Color" aria-label="Search">
+				<input asp-for="GbSize" type="number" class="form-control mr-sm-2" type="search" placeholder="GbSize" aria-label="Search">
+				<input asp-for="Ram" type="number" class="form-control mr-sm-2" type="search" placeholder="Ram" aria-label="Search">
+				<select asp-for="CategoryId">
+					<option disabled="disabled" selected="selected">Choose option</option>
+					@foreach (var item in ViewBag.Categories)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<select asp-for="VendorId">
+					<option disabled="disabled" selected="selected">Choose option</option>
+					@foreach (var item in ViewBag.Vendors)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+	<a asp-action="AddEdit">Add Product</a>
+
+	<section class="section-products">
+		<div class="container">
+			<div class="row justify-content-center text-center">
+				<div class="col-md-8 col-lg-6">
+					<div class="header">
+						<h3>Welcome</h3>
+						<h2>All products</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Single Product -->
+				@foreach (var item in ViewBag.Filter)
+				{
+					<div class="col-md-6 col-lg-4 col-xl-3">
+						<div id="product-1" class="single-product">
+							<div class="part-1">
+								<img src="@item.ImageUrl" alt="">
+								<ul>
+									<li><a asp-action="Delete" asp-route-Id="@item.Id"><i class="fas fa-trash"></i></a></li>
+									<li><a asp-action="AddEdit" asp-route-Id="@item.Id"><i class="fas fa-pen"></i></a></li>
+								</ul>
+							</div>
+
+							<div class="part-2">
+								<h3 class="product-title">Name: @item.Name</h3>
+								<h4 class="product-title">Gb Size: @item.GbSize Gb</h4>
+								<h4 class="product-title">Ram: @item.Ram Gb</h4>
+								<h4 class="product-title">Color: @item.Color</h4>
+								<h6 class="product-title">Description: @item.Description</h6>
+								<h4 class="product-price">@item.Price ֏</h4>
+							</div>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+	</section>
+	<!-- partial -->
+
+</body>
+</html>
